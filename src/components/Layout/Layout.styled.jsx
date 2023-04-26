@@ -14,7 +14,6 @@ export const Header = styled.header`
 export const List = styled.ul`
   display: flex;
   gap: 40px;
-  list-style: none;
 `;
 
 export const Link = styled(NavLink)`
