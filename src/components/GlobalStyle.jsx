@@ -29,6 +29,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
   color: ${({ theme }) => theme.colors.primaryText};
   background-color: ${({ theme }) => theme.colors.primary};
 }

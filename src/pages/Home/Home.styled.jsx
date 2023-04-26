@@ -5,5 +5,4 @@ export const Title = styled.h1`
 
   font-size: 28px;
   line-height: 1.5;
-  color: ${({ theme }) => theme.colors.primaryText};
 `;

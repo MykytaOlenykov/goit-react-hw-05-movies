@@ -8,7 +8,14 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
+  position: sticky;
+  z-index: 50;
+  top: 0;
+
   padding: 20px 0;
+
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.secondaryText};
 `;
 
 export const List = styled.ul`
