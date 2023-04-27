@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import * as moviesAPI from 'services';
+import { Status } from 'services';
 import SearchMovies from 'components/SearchMovies/SearchMovies';
 import MoviesList from 'components/MoviesList/MoviesList';
+import Loader from 'components/Loader/Loader';
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
+import * as S from './Movies.styled';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [status, setStatus] = useState(Status.IDLE);
+  const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(() => searchParams.get('query') ?? '');
+
+  const isNotFound = movies.length === 0;
 
   useEffect(() => {
     if (query === '') {
@@ -16,10 +24,16 @@ const Movies = () => {
 
     const fetchMovies = async () => {
       try {
+        setStatus(Status.PENDING);
+
         const { results } = await moviesAPI.searchMoviesByQuery(query);
+
         setMovies(results);
+        setStatus(Status.RESOLVED);
       } catch (error) {
         console.log(error);
+        setError(error);
+        setStatus(Status.REJECTED);
       }
     };
 
@@ -32,16 +46,59 @@ const Movies = () => {
     setQuery(normalizedQuery);
   };
 
-  return (
-    <main>
-      <section>
-        <SearchMovies onSubmit={handleSubmit} />
-      </section>
-      <section>
-        <MoviesList movies={movies} />
-      </section>
-    </main>
-  );
+  if (status === Status.IDLE) {
+    return (
+      <main>
+        <section>
+          <SearchMovies onSubmit={handleSubmit} />
+        </section>
+        <section></section>
+      </main>
+    );
+  }
+
+  if (status === Status.PENDING) {
+    return (
+      <main>
+        <section>
+          <SearchMovies onSubmit={handleSubmit} />
+        </section>
+        <section>
+          <Loader />
+        </section>
+      </main>
+    );
+  }
+
+  if (status === Status.REJECTED) {
+    return (
+      <main>
+        <section>
+          <SearchMovies onSubmit={handleSubmit} />
+        </section>
+        <section>
+          <ErrorMessage errorText={error.message} />
+        </section>
+      </main>
+    );
+  }
+
+  if (status === Status.RESOLVED) {
+    return (
+      <main>
+        <section>
+          <SearchMovies onSubmit={handleSubmit} />
+        </section>
+        <section>
+          {isNotFound ? (
+            <S.NotFound>Nothing found for query {query}</S.NotFound>
+          ) : (
+            <MoviesList movies={movies} />
+          )}
+        </section>
+      </main>
+    );
+  }
 };
 
 export default Movies;

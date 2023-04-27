@@ -18,12 +18,12 @@ const Home = () => {
 
         const { results } = await moviesAPI.getTrending();
 
-        setStatus(Status.RESOLVED);
         setMovies(results);
+        setStatus(Status.RESOLVED);
       } catch (error) {
         console.log(error);
-        setStatus(Status.REJECTED);
         setError(error);
+        setStatus(Status.REJECTED);
       }
     };
 
