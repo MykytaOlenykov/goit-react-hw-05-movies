@@ -1,6 +1,34 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const GoBackLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 8px;
+
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.primaryText};
+
+  background-color: ${({ theme }) => theme.colors.primaryBg};
+  border: 1px solid ${({ theme }) => theme.colors.secondaryText};
+  border-radius: 8px;
+
+  transition: color
+      ${({ theme }) => `${theme.duration} ${theme.timingFunction}`},
+    background-color
+      ${({ theme }) => `${theme.duration} ${theme.timingFunction}`};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.secondaryBg};
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -19,6 +47,7 @@ export const Image = styled.img`
   height: auto;
 
   object-fit: cover;
+  object-position: center;
 `;
 
 export const PrimaryTitle = styled.h1`
@@ -76,33 +105,5 @@ export const GenresList = styled.ul`
     background-color: ${({ theme }) => theme.colors.primaryBg};
     border: 1px solid ${({ theme }) => theme.colors.secondaryText};
     border-radius: 8px;
-  }
-`;
-
-export const GoBackLink = styled(Link)`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 4px 8px;
-
-  font-size: 16px;
-  line-height: 1.5;
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.primaryText};
-
-  background-color: ${({ theme }) => theme.colors.primaryBg};
-  border: 1px solid ${({ theme }) => theme.colors.secondaryText};
-  border-radius: 8px;
-
-  transition: color
-      ${({ theme }) => `${theme.duration} ${theme.timingFunction}`},
-    background-color
-      ${({ theme }) => `${theme.duration} ${theme.timingFunction}`};
-
-  &:hover,
-  &:focus {
-    color: ${({ theme }) => theme.colors.primary};
-    background-color: ${({ theme }) => theme.colors.secondaryBg};
   }
 `;
