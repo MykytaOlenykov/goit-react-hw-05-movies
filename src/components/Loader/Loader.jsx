@@ -12,4 +12,5 @@ const Loader = () => (
     visible={true}
   />
 );
+
 export default Loader;
