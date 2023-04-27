@@ -42,11 +42,14 @@ export const TextBox = styled.div`
 `;
 
 export const PersonName = styled.h3`
+  margin-bottom: 4px;
+
   font-size: 20px;
   line-height: 1.5;
 `;
 
-export const Character = styled.h3`
+export const Character = styled.p`
   font-size: 16px;
   line-height: 1.5;
+  color: ${({ theme }) => theme.colors.secondaryText};
 `;

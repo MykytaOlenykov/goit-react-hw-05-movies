@@ -38,3 +38,11 @@ export const getMovieCredits = async movieId => {
 
   return res.data;
 };
+
+export const getMovieReviews = async movieId => {
+  const res = await axios.get(`/movie/${movieId}/reviews`, {
+    params: defaultParams,
+  });
+
+  return res.data;
+};
