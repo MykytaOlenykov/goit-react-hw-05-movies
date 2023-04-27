@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, Outlet } from 'react-router-dom';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import * as moviesAPI from 'services';
 import * as S from './MovieDetails.styled';
@@ -45,7 +45,7 @@ const MovieDetails = () => {
 
             <S.UserScore>User score: {movieDetails?.vote_average}</S.UserScore>
 
-            <S.OverviewTitle>Overview</S.OverviewTitle>
+            <S.SecondaryTitle>Overview</S.SecondaryTitle>
             <S.Overview>{movieDetails?.overview}</S.Overview>
 
             <S.GenresTitle>Genres</S.GenresTitle>
@@ -56,6 +56,21 @@ const MovieDetails = () => {
             </S.GenresList>
           </div>
         </S.Container>
+      </section>
+      <S.Section>
+        <S.SecondaryTitle>Additional information</S.SecondaryTitle>
+
+        <S.LinksList>
+          <li>
+            <S.LinkToAddInfo to="cast">Cast</S.LinkToAddInfo>
+          </li>
+          <li>
+            <S.LinkToAddInfo to="reviews">Reviews</S.LinkToAddInfo>
+          </li>
+        </S.LinksList>
+      </S.Section>
+      <section>
+        <Outlet />
       </section>
     </main>
   );

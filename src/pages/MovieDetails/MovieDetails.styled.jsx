@@ -44,7 +44,7 @@ export const Thumb = styled.div`
 export const Image = styled.img`
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
 
   object-fit: cover;
   object-position: center;
@@ -68,7 +68,7 @@ export const UserScore = styled.p`
   border-radius: 8px;
 `;
 
-export const OverviewTitle = styled.h2`
+export const SecondaryTitle = styled.h2`
   margin-bottom: 12px;
 
   font-size: 24px;
@@ -105,5 +105,39 @@ export const GenresList = styled.ul`
     background-color: ${({ theme }) => theme.colors.primaryBg};
     border: 1px solid ${({ theme }) => theme.colors.secondaryText};
     border-radius: 8px;
+  }
+`;
+
+export const Section = styled.section`
+  border-top: 2px solid ${({ theme }) => theme.colors.primaryText};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.primaryText};
+`;
+
+export const LinksList = styled.ul`
+  display: flex;
+  gap: 8px;
+`;
+
+export const LinkToAddInfo = styled(Link)`
+  display: inline-block;
+  padding: 4px 8px;
+
+  font-size: 18px;
+  line-height: 1.5;
+  color: ${({ theme }) => theme.colors.primaryText};
+
+  background-color: ${({ theme }) => theme.colors.primaryBg};
+  border: 1px solid ${({ theme }) => theme.colors.secondaryText};
+  border-radius: 8px;
+
+  transition: color
+      ${({ theme }) => `${theme.duration} ${theme.timingFunction}`},
+    background-color
+      ${({ theme }) => `${theme.duration} ${theme.timingFunction}`};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.secondaryBg};
   }
 `;

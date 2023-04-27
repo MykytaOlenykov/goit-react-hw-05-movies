@@ -9,8 +9,8 @@ const Home = () => {
   useEffect(() => {
     const fetchTrending = async () => {
       try {
-        const data = await moviesAPI.getTrending();
-        setMovies(data.results);
+        const { results } = await moviesAPI.getTrending();
+        setMovies(results);
       } catch (error) {
         console.log(error);
       }

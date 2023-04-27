@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import * as S from './SearchMovies.styled';
 
 const schema = yup.object().shape({
-  searchQuery: yup
+  query: yup
     .string()
     .matches(/\s*\S.*$/, 'Enter something.')
     .required(),
 });
 
 const initialValues = {
-  searchQuery: '',
+  query: '',
 };
 
 const SearchMovies = ({ onSubmit }) => {
@@ -26,16 +26,14 @@ const SearchMovies = ({ onSubmit }) => {
   return (
     <S.Form
       autoComplete="off"
-      onSubmit={handleSubmit(({ searchQuery }) => {
-        onSubmit(searchQuery);
+      onSubmit={handleSubmit(({ query }) => {
+        onSubmit(query);
         reset();
       })}
     >
       <S.Container>
-        <S.Input type="text" {...register('searchQuery')} />
-        {errors.searchQuery && (
-          <S.ErrorText>{errors.searchQuery.message}</S.ErrorText>
-        )}
+        <S.Input type="text" {...register('query')} />
+        {errors.query && <S.ErrorText>{errors.query.message}</S.ErrorText>}
       </S.Container>
 
       <S.Button type="submit">Search</S.Button>

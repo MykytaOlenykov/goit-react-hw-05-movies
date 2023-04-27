@@ -14,8 +14,27 @@ export const getTrending = async () => {
   return res.data;
 };
 
+export const searchMoviesByQuery = async query => {
+  const params = {
+    ...defaultParams,
+    query,
+  };
+
+  const res = await axios.get('/search/movie', { params });
+
+  return res.data;
+};
+
 export const getMovieDetails = async movieId => {
   const res = await axios.get(`/movie/${movieId}`, { params: defaultParams });
+
+  return res.data;
+};
+
+export const getMovieCredits = async movieId => {
+  const res = await axios.get(`/movie/${movieId}/credits`, {
+    params: defaultParams,
+  });
 
   return res.data;
 };
