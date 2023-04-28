@@ -32,7 +32,11 @@ const SearchMovies = ({ onSubmit }) => {
       })}
     >
       <S.Container>
-        <S.Input type="text" {...register('query')} />
+        <S.Input
+          type="text"
+          {...register('query')}
+          placeholder="Find movie..."
+        />
         {errors.query && <S.ErrorText>{errors.query.message}</S.ErrorText>}
       </S.Container>
 

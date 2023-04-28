@@ -27,6 +27,10 @@ export const Input = styled.input`
   &:focus {
     border-color: ${({ theme }) => theme.colors.secondaryBg};
   }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.secondaryText};
+  }
 `;
 
 export const ErrorText = styled.p`
