@@ -34,6 +34,8 @@ export const UserScore = styled.p`
 
   padding: 4px 8px;
 
+  color: ${({ theme }) => theme.colors.secondaryText};
+
   background-color: ${({ theme }) => theme.colors.primaryBg};
   border: 1px solid ${({ theme }) => theme.colors.secondaryText};
   border-radius: 8px;
@@ -52,6 +54,8 @@ export const Overview = styled.p`
 
   padding: 4px 8px;
   max-width: 520px;
+
+  color: ${({ theme }) => theme.colors.secondaryText};
 
   background-color: ${({ theme }) => theme.colors.primaryBg};
   border: 1px solid ${({ theme }) => theme.colors.secondaryText};
@@ -72,6 +76,8 @@ export const GenresList = styled.ul`
 
   & > li {
     padding: 4px 8px;
+
+    color: ${({ theme }) => theme.colors.secondaryText};
 
     background-color: ${({ theme }) => theme.colors.primaryBg};
     border: 1px solid ${({ theme }) => theme.colors.secondaryText};

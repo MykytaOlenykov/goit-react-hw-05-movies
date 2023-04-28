@@ -49,6 +49,7 @@ const Reviews = () => {
   if (status === Status.RESOLVED) {
     return (
       <>
+        <S.HideTitle>Reviews</S.HideTitle>
         {isNotFound ? (
           <S.NotFound>We don`t have any reviews for this movie.</S.NotFound>
         ) : (

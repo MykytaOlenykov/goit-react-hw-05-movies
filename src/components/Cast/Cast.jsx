@@ -46,13 +46,20 @@ const Cast = () => {
 
   if (status === Status.RESOLVED) {
     return (
-      <S.List>
-        {cast.map(({ id, name, character, profile_path }) => (
-          <li key={id}>
-            <CastCard name={name} character={character} avatar={profile_path} />
-          </li>
-        ))}
-      </S.List>
+      <>
+        <S.HideTitle>Cast</S.HideTitle>
+        <S.List>
+          {cast.map(({ id, name, character, profile_path }) => (
+            <li key={id}>
+              <CastCard
+                name={name}
+                character={character}
+                avatar={profile_path}
+              />
+            </li>
+          ))}
+        </S.List>
+      </>
     );
   }
 };

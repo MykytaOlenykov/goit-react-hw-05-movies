@@ -10,6 +10,7 @@ const CastCard = ({ name, character, avatar }) => (
           avatar ? `https://image.tmdb.org/t/p/w400/${avatar}` : defaultAvatar
         }
         alt={name}
+        loading="lazy"
       />
     </S.Thumb>
     <S.TextBox>

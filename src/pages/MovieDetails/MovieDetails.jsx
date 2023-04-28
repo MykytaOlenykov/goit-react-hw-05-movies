@@ -72,7 +72,7 @@ const MovieDetails = () => {
           <MovieDetailsCard movieDetails={movieDetails} />
         </section>
         <S.Section>
-          <S.SecondaryTitle>Additional information</S.SecondaryTitle>
+          <S.Title>Additional information</S.Title>
 
           <S.LinksList>
             <li>

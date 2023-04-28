@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const GoBackLink = styled(Link)`
@@ -29,7 +29,7 @@ export const GoBackLink = styled(Link)`
   }
 `;
 
-export const SecondaryTitle = styled.h2`
+export const Title = styled.h2`
   margin-bottom: 12px;
 
   font-size: 24px;
@@ -46,7 +46,7 @@ export const LinksList = styled.ul`
   gap: 8px;
 `;
 
-export const LinkToAddInfo = styled(Link)`
+export const LinkToAddInfo = styled(NavLink)`
   display: inline-block;
   padding: 4px 8px;
 
@@ -54,17 +54,9 @@ export const LinkToAddInfo = styled(Link)`
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.primaryText};
 
-  background-color: ${({ theme }) => theme.colors.primaryBg};
-  border: 1px solid ${({ theme }) => theme.colors.secondaryText};
   border-radius: 8px;
 
-  transition: color
-      ${({ theme }) => `${theme.duration} ${theme.timingFunction}`},
-    background-color
-      ${({ theme }) => `${theme.duration} ${theme.timingFunction}`};
-
-  &:hover,
-  &:focus {
+  &.active {
     color: ${({ theme }) => theme.colors.primary};
     background-color: ${({ theme }) => theme.colors.secondaryBg};
   }
