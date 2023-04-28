@@ -42,9 +42,7 @@ const MovieDetails = () => {
   if (status === Status.PENDING) {
     return (
       <main>
-        <section>
-          <Loader />
-        </section>
+        <Loader />
       </main>
     );
   }
