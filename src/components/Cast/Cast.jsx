@@ -33,25 +33,15 @@ const Cast = () => {
   }, [movieId]);
 
   if (status === Status.IDLE) {
-    return <S.List></S.List>;
+    return <></>;
   }
 
   if (status === Status.PENDING) {
-    return (
-      <>
-        <S.List></S.List>
-        <Loader />
-      </>
-    );
+    return <Loader />;
   }
 
   if (status === Status.REJECTED) {
-    return (
-      <>
-        <S.List></S.List>
-        <ErrorMessage errorText={error.message} />
-      </>
-    );
+    return <ErrorMessage errorText={error.message} />;
   }
 
   if (status === Status.RESOLVED) {

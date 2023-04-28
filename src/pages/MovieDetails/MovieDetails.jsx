@@ -1,7 +1,8 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { useLocation, useParams, Outlet } from 'react-router-dom';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import * as moviesAPI from 'services';
+import Loader from 'components/Loader/Loader';
 import * as S from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -70,7 +71,9 @@ const MovieDetails = () => {
         </S.LinksList>
       </S.Section>
       <section>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </section>
     </main>
   );

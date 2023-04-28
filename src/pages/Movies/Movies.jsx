@@ -44,6 +44,7 @@ const Movies = () => {
     const normalizedQuery = newQuery.trim();
     setSearchParams({ query: normalizedQuery });
     setQuery(normalizedQuery);
+    setError(null);
   };
 
   if (status === Status.IDLE) {
