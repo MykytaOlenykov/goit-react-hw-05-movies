@@ -3,7 +3,7 @@ import * as S from './ReviewCard.styled';
 
 const ReviewCard = ({ author, review }) => (
   <S.Card>
-    <S.Author>{author}</S.Author>
+    <S.Author>Author: {author}</S.Author>
     <S.Review>{review}</S.Review>
   </S.Card>
 );
