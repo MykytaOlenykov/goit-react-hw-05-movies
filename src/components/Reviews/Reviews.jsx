@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as moviesAPI from 'services';
+import ReviewCard from 'components/ReviewCard/ReviewCard';
 import * as S from './Reviews.styled';
 
 const Reviews = () => {
@@ -27,10 +28,7 @@ const Reviews = () => {
         <S.List>
           {reviews.map(({ id, author, content }) => (
             <li key={id}>
-              <S.CardReview>
-                <S.Author>{author}</S.Author>
-                <S.Review>{content}</S.Review>
-              </S.CardReview>
+              <ReviewCard author={author} review={content} />
             </li>
           ))}
         </S.List>

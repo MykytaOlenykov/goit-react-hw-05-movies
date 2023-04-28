@@ -1,50 +1,70 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as moviesAPI from 'services';
+import { Status } from 'services';
+import CastCard from 'components/CastCard/CastCard';
+import Loader from 'components/Loader/Loader';
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import * as S from './Cast.styled';
-import defaultAvatar from 'images/default_avatar.jpg';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
+  const [status, setStatus] = useState(Status.IDLE);
+  const [error, setError] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
     const fetchCast = async () => {
       try {
+        setStatus(Status.PENDING);
+
         const { cast } = await moviesAPI.getMovieCredits(movieId);
+
         setCast(cast);
+        setStatus(Status.RESOLVED);
       } catch (error) {
         console.log(error);
+        setError(error);
+        setStatus(Status.REJECTED);
       }
     };
 
     fetchCast();
   }, [movieId]);
 
-  return (
-    <S.List>
-      {cast.map(({ id, name, character, profile_path }) => (
-        <li key={id}>
-          <S.Card>
-            <S.Thumb>
-              <S.Image
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/w400/${profile_path}`
-                    : defaultAvatar
-                }
-                alt={name}
-              />
-            </S.Thumb>
-            <S.TextBox>
-              <S.PersonName>{name}</S.PersonName>
-              <S.Character>Character: {character}</S.Character>
-            </S.TextBox>
-          </S.Card>
-        </li>
-      ))}
-    </S.List>
-  );
+  if (status === Status.IDLE) {
+    return <S.List></S.List>;
+  }
+
+  if (status === Status.PENDING) {
+    return (
+      <>
+        <S.List></S.List>
+        <Loader />
+      </>
+    );
+  }
+
+  if (status === Status.REJECTED) {
+    return (
+      <>
+        <S.List></S.List>
+        <ErrorMessage errorText={error.message} />
+      </>
+    );
+  }
+
+  if (status === Status.RESOLVED) {
+    return (
+      <S.List>
+        {cast.map(({ id, name, character, profile_path }) => (
+          <li key={id}>
+            <CastCard name={name} character={character} avatar={profile_path} />
+          </li>
+        ))}
+      </S.List>
+    );
+  }
 };
 
 export default Cast;

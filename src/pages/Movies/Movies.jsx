@@ -15,7 +15,7 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(() => searchParams.get('query') ?? '');
 
-  const isNotFound = movies.length === 0;
+  const isNotFound = movies.length === 0 && query.length !== 0;
 
   useEffect(() => {
     if (query === '') {
