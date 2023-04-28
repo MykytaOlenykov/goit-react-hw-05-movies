@@ -2,11 +2,16 @@ import { useEffect, useState, useRef, Suspense } from 'react';
 import { useLocation, useParams, Outlet } from 'react-router-dom';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import * as moviesAPI from 'services';
+import { Status } from 'services';
+import MovieDetailsCard from 'components/MovieDetailsCard/MovieDetailsCard';
 import Loader from 'components/Loader/Loader';
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import * as S from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
+  const [status, setStatus] = useState(Status.IDLE);
+  const [error, setError] = useState(null);
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
@@ -14,69 +19,78 @@ const MovieDetails = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
+        setStatus(Status.PENDING);
+
         const data = await moviesAPI.getMovieDetails(movieId);
+
         setMovieDetails(data);
+        setStatus(Status.RESOLVED);
       } catch (error) {
         console.log(error);
+        setError(error);
+        setStatus(Status.REJECTED);
       }
     };
 
     fetchMovieDetails();
   }, [movieId]);
 
-  return (
-    <main>
-      <section>
-        <S.GoBackLink to={backLinkLocationRef.current}>
-          <HiArrowNarrowLeft />
-          Go back
-        </S.GoBackLink>
-      </section>
-      <section>
-        <S.Container>
-          <S.Thumb>
-            <S.Image
-              src={`https://image.tmdb.org/t/p/w400/${movieDetails?.poster_path}`}
-              alt={movieDetails?.title}
-            />
-          </S.Thumb>
+  if (status === Status.IDLE) {
+    return <main></main>;
+  }
 
-          <div>
-            <S.PrimaryTitle>{movieDetails?.title}</S.PrimaryTitle>
+  if (status === Status.PENDING) {
+    return (
+      <main>
+        <section>
+          <Loader />
+        </section>
+      </main>
+    );
+  }
 
-            <S.UserScore>User score: {movieDetails?.vote_average}</S.UserScore>
+  if (status === Status.REJECTED) {
+    return (
+      <main>
+        <section>
+          <ErrorMessage errorText={error.message} />
+        </section>
+      </main>
+    );
+  }
 
-            <S.SecondaryTitle>Overview</S.SecondaryTitle>
-            <S.Overview>{movieDetails?.overview}</S.Overview>
+  if (status === Status.RESOLVED) {
+    return (
+      <main>
+        <section>
+          <S.GoBackLink to={backLinkLocationRef.current}>
+            <HiArrowNarrowLeft />
+            Go back
+          </S.GoBackLink>
+        </section>
+        <section>
+          <MovieDetailsCard movieDetails={movieDetails} />
+        </section>
+        <S.Section>
+          <S.SecondaryTitle>Additional information</S.SecondaryTitle>
 
-            <S.GenresTitle>Genres</S.GenresTitle>
-            <S.GenresList>
-              {movieDetails?.genres.map(({ id, name }) => (
-                <li key={id}>{name}</li>
-              ))}
-            </S.GenresList>
-          </div>
-        </S.Container>
-      </section>
-      <S.Section>
-        <S.SecondaryTitle>Additional information</S.SecondaryTitle>
-
-        <S.LinksList>
-          <li>
-            <S.LinkToAddInfo to="cast">Cast</S.LinkToAddInfo>
-          </li>
-          <li>
-            <S.LinkToAddInfo to="reviews">Reviews</S.LinkToAddInfo>
-          </li>
-        </S.LinksList>
-      </S.Section>
-      <section>
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-      </section>
-    </main>
-  );
+          <S.LinksList>
+            <li>
+              <S.LinkToAddInfo to="cast">Cast</S.LinkToAddInfo>
+            </li>
+            <li>
+              <S.LinkToAddInfo to="reviews">Reviews</S.LinkToAddInfo>
+            </li>
+          </S.LinksList>
+        </S.Section>
+        <section>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </section>
+      </main>
+    );
+  }
 };
 
 export default MovieDetails;
