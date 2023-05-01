@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Thumb = styled.div`
   height: auto;
-  max-width: 320px;
+  width: 320px;
 `;
 
 export const Image = styled.img`
