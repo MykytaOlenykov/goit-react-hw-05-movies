@@ -5,6 +5,8 @@ import defaultMoviePoster from 'images/default-movie.jpg';
 const MovieDetailsCard = ({ movieDetails }) => {
   const { poster_path, title, vote_average, overview, genres } = movieDetails;
 
+  const userScore = Math.round(vote_average);
+
   return (
     <S.Container>
       <S.Thumb>
@@ -21,7 +23,7 @@ const MovieDetailsCard = ({ movieDetails }) => {
       <div>
         <S.Title>{title}</S.Title>
 
-        <S.UserScore>User score: {vote_average}</S.UserScore>
+        <S.UserScore>User score: {userScore}</S.UserScore>
 
         {overview && (
           <>
