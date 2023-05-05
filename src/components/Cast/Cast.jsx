@@ -20,7 +20,14 @@ const Cast = () => {
 
         const { cast } = await moviesAPI.getMovieCredits(movieId);
 
-        setCast(cast);
+        const newCast = cast.map(({ id, name, character, profile_path }) => ({
+          id,
+          name,
+          character,
+          profile_path,
+        }));
+
+        setCast(newCast);
         setStatus(Status.RESOLVED);
       } catch (error) {
         console.log(error);

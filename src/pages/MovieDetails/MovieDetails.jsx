@@ -21,9 +21,16 @@ const MovieDetails = () => {
       try {
         setStatus(Status.PENDING);
 
-        const data = await moviesAPI.getMovieDetails(movieId);
+        const { poster_path, title, vote_average, overview, genres } =
+          await moviesAPI.getMovieDetails(movieId);
 
-        setMovieDetails(data);
+        setMovieDetails({
+          poster_path,
+          title,
+          vote_average,
+          overview,
+          genres,
+        });
         setStatus(Status.RESOLVED);
       } catch (error) {
         console.log(error);

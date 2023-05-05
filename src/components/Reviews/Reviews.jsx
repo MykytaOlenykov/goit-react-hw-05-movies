@@ -22,7 +22,13 @@ const Reviews = () => {
 
         const { results } = await moviesAPI.getMovieReviews(movieId);
 
-        setReviews(results);
+        const newReviews = results.map(({ id, author, content }) => ({
+          id,
+          author,
+          content,
+        }));
+
+        setReviews(newReviews);
         setStatus(Status.RESOLVED);
       } catch (error) {
         console.log(error);

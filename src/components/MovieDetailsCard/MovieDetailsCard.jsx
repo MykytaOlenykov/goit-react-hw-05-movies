@@ -44,7 +44,7 @@ const MovieDetailsCard = ({ movieDetails }) => {
 };
 
 MovieDetailsCard.propTypes = {
-  movieDetails: PropTypes.shape({
+  movieDetails: PropTypes.exact({
     poster_path: PropTypes.string,
     title: PropTypes.string.isRequired,
     vote_average: PropTypes.number.isRequired,

@@ -18,7 +18,9 @@ const Home = () => {
 
         const { results } = await moviesAPI.getTrending();
 
-        setMovies(results);
+        const newMovies = results.map(({ id, title }) => ({ id, title }));
+
+        setMovies(newMovies);
         setStatus(Status.RESOLVED);
       } catch (error) {
         console.log(error);

@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Thumb = styled.div`
-  height: auto;
+  height: 480px;
   width: 320px;
 `;
 
