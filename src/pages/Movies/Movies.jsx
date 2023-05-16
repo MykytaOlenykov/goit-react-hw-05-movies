@@ -13,7 +13,7 @@ const Movies = () => {
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(() => searchParams.get('query') ?? '');
+  const query = searchParams.get('query') ?? '';
 
   const isNotFound = movies.length === 0 && query.length !== 0;
 
@@ -45,7 +45,6 @@ const Movies = () => {
   const handleSubmit = newQuery => {
     const normalizedQuery = newQuery.trim();
     setSearchParams({ query: normalizedQuery });
-    setQuery(normalizedQuery);
     setError(null);
   };
 
