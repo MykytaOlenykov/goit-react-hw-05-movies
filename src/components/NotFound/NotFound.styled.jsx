@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -6,6 +7,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 4px;
+  height: 100vh;
 `;
 
 export const ErrorMessage = styled.p`
@@ -18,4 +20,13 @@ export const ErrorCode = styled.p`
   font-size: 60px;
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.secondaryText};
+`;
+
+export const HomePageLink = styled(Link)`
+  display: inline-block;
+  padding: 4px 8px;
+
+  font-size: 24px;
+  line-height: 1.5;
+  color: ${({ theme }) => theme.colors.primaryText};
 `;
