@@ -54,7 +54,6 @@ const Movies = () => {
         <section>
           <SearchMovies onSubmit={handleSubmit} />
         </section>
-        <section></section>
       </main>
     );
   }

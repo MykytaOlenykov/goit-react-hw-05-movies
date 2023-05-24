@@ -4,7 +4,7 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: calc((1280px - 80px - 16px) / 5);
+  width: 100%;
 
   background-color: ${({ theme }) => theme.colors.primaryBg};
   border-radius: 4px;

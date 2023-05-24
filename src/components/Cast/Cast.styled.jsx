@@ -14,9 +14,26 @@ export const HideTitle = styled.h2`
 `;
 
 export const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 210px;
   row-gap: 24px;
   column-gap: 20px;
+  justify-content: center;
   padding: 0 8px;
+
+  @media screen and (min-width: 520px) {
+    grid-template-columns: repeat(2, 1frs);
+  }
+
+  @media screen and (min-width: 720px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (min-width: 920px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (min-width: 1180px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `;

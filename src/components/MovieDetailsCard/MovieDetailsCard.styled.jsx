@@ -5,11 +5,17 @@ export const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
+  padding: 0 8px;
 `;
 
 export const Thumb = styled.div`
-  height: 480px;
-  width: 320px;
+  height: 380px;
+  max-width: 320px;
+  width: 100%;
+
+  @media screen and (min-width: 380px) {
+    height: 480px;
+  }
 `;
 
 export const Image = styled.img`

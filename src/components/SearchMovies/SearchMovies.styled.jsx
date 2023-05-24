@@ -12,6 +12,8 @@ export const Container = styled.div`
 
 export const Input = styled.input`
   padding: 4px 8px;
+  max-width: 320px;
+  width: 100%;
 
   color: ${({ theme }) => theme.colors.primaryText};
 
