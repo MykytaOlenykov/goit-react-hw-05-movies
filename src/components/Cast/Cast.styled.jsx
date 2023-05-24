@@ -19,10 +19,9 @@ export const List = styled.ul`
   row-gap: 24px;
   column-gap: 20px;
   justify-content: center;
-  padding: 0 8px;
 
   @media screen and (min-width: 520px) {
-    grid-template-columns: repeat(2, 1frs);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media screen and (min-width: 720px) {

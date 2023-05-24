@@ -13,7 +13,7 @@ export const Header = styled.header`
   z-index: 50;
   top: 0;
 
-  padding: 20px 0;
+  padding: 20px 8px;
 
   background-color: ${({ theme }) => theme.colors.primary};
   border-bottom: 2px solid ${({ theme }) => theme.colors.secondaryText};

@@ -40,6 +40,6 @@ code {
     monospace;
 }
 section{
-  padding: 20px 0;
+  padding: 20px 8px;
 }
 `;

@@ -5,7 +5,6 @@ export const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 0 8px;
 `;
 
 export const Thumb = styled.div`
