@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, Suspense } from 'react';
 import { useLocation, useParams, Outlet } from 'react-router-dom';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import * as moviesAPI from 'services';
-import { Status } from 'services';
+import { Status } from 'constants';
 import MovieDetailsCard from 'components/MovieDetailsCard/MovieDetailsCard';
 import Loader from 'components/Loader/Loader';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
@@ -13,7 +13,7 @@ const MovieDetails = () => {
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
   const location = useLocation();
-  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
   const { movieId } = useParams();
 
   useEffect(() => {

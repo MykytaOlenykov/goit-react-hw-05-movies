@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import * as moviesAPI from 'services';
-import { Status } from 'services';
+import { Status } from 'constants';
 import SearchMovies from 'components/SearchMovies/SearchMovies';
 import MoviesList from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as moviesAPI from 'services';
-import { Status } from 'services';
+import { Status } from 'constants';
 import CastCard from 'components/CastCard/CastCard';
 import Loader from 'components/Loader/Loader';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as moviesAPI from 'services';
-import { Status } from 'services';
+import { Status } from 'constants';
 import MoviesList from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
